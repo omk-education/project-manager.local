@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         User::factory()
             ->count(2)
             ->junior()
+            ->hasTasks(10)
             ->create();
 
         User::factory()
