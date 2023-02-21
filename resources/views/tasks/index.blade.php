@@ -30,7 +30,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->priority }}</td>
-                        <td>{{ $item->user_id }}</td>
+                        <td>{{ $item->user->name }}</td>
                         <td>{{ $item->completed }}</td>
                         <td>
                             <a class="btn btn-outline-primary float-end mr-1"

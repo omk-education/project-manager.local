@@ -24,7 +24,12 @@
     Исполнитель
   </label>
   <select class="form-select" name="user_id">
-    <option value="user_id">ФИО разработчика</option>
+    @forelse($juniors as $junior)
+      <option value="{{ $junior->id }}">
+        {{ $junior->name }}
+      </option>
+    @empty
+    @endforelse
   </select>
 </div>
 
@@ -37,3 +42,6 @@
     <option value="1">Выполнено</option>
   </select>
 </div>
+
+<hr>
+<button type="submit" class="btn btn-primary">Сохранить</button>

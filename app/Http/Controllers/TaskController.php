@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\User;
 
 
 class TaskController extends Controller
@@ -27,7 +28,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $juniors = User::where('role', 'junior')->get();
+
+        return view('tasks.create', compact('juniors'));
     }
 
     /**
