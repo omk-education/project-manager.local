@@ -70,6 +70,17 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                  @can('user')
+                    <a class="dropdown-item">Пользователь</a>
+                  @endcan
+                  @can('junior')
+                    <a class="dropdown-item">Программист</a>
+                  @endcan
+                  @can('senior')
+                    <a class="dropdown-item">Ведущий программист</a>
+                  @endcan
+
                   <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
