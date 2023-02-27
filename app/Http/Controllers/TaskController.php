@@ -71,8 +71,9 @@ class TaskController extends Controller
     public function edit($id)
     {
         $item = Task::findOrFail($id);
+        $juniors = User::where('role', 'junior')->get();
 
-        return view('tasks.edit', compact('item'));
+        return view('tasks.edit', compact('item', 'juniors'));
     }
 
     /**

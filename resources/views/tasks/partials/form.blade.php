@@ -2,21 +2,22 @@
   <label for="name" class="form-label">
     Название задачи
   </label>
-  <input type="text" class="form-control" id="name" name="name">
+  <input type="text" class="form-control" id="name" name="name" value="{{ $item->name ?? old('name') }}">
 </div>
 
 <div class="mb-3">
   <label for="description" class="form-label">
     Описание задачи
   </label>
-  <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+  <textarea class="form-control" id="description" name="description" rows="3">{{ $item->description ?? old('description') }}</textarea>
 </div>
 
 <div class="mb-3">
   <label for="priority" class="form-label">
     Приоритет задачи
   </label>
-  <input type="number" class="form-control" id="priority" name="priority">
+  <input type="number" class="form-control" id="priority" name="priority"
+    value="{{ $item->priority ?? old('priority') }}">
 </div>
 
 <div class="mb-3">
@@ -25,7 +26,7 @@
   </label>
   <select class="form-select" name="user_id">
     @forelse($juniors as $junior)
-      <option value="{{ $junior->id }}">
+      <option value="{{ $junior->id }}" {{ ($item->user_id ?? old('user_id')) == $junior->id ? 'selected' : '' }}>
         {{ $junior->name }}
       </option>
     @empty
@@ -38,8 +39,12 @@
     Статус задачи
   </label>
   <select class="form-select" name="completed">
-    <option value="0">В работе</option>
-    <option value="1">Выполнено</option>
+    <option value="0" {{ ($item->completed ?? old('completed')) == 0 ? 'selected' : '' }}>
+      В работе
+    </option>
+    <option value="1" {{ ($item->completed ?? old('completed')) == 1 ? 'selected' : '' }}>
+      Выполнено
+    </option>
   </select>
 </div>
 
