@@ -36,17 +36,21 @@
 
             @auth
 
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('tasks.index') }}">
-                  Задачи
-                </a>
-              </li>
+              @cannot('user')
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('tasks.index') }}">
+                    Задачи
+                  </a>
+                </li>
+              @endcannot
 
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('users.index') }}">
-                  Пользователи
-                </a>
-              </li>
+              @can('senior')
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('users.index') }}">
+                    Пользователи
+                  </a>
+                </li>
+              @endcan
 
             @endauth
 
