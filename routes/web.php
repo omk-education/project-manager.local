@@ -14,5 +14,14 @@ Route::get(
     [HomeController::class, 'index']
 )->name('home');
 
-Route::resource('users', UserController::class);
-Route::resource('tasks', TaskController::class);
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Route::resource('tasks', TaskController::class)
+            ->middleware(['can:junior', 'can:senior']);
+
+
+        Route::resource('users', UserController::class)
+            ->middleware(['can:senior']);
+    }
+);
