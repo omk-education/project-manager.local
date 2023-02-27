@@ -24,15 +24,29 @@
     Роль пользователя
   </label>
   <select class="form-select" name="role">
-    <option value="user" {{ ($item->role ?? old('role')) == 'user' ? 'selected' : '' }}>
-      Пользователь
-    </option>
-    <option value="junior" {{ ($item->role ?? old('role')) == 'junior' ? 'selected' : '' }}>
-      Программист
-    </option>
-    <option value="senior" {{ ($item->role ?? old('role')) == 'senior' ? 'selected' : '' }}>
-      Ведущий программист
-    </option>
+
+    @if ($item->role == 'user')
+      {{--  --}}
+      <option value="user" {{ ($item->role ?? old('role')) == 'user' ? 'selected' : '' }}>
+        Пользователь
+      </option>
+      <option value="junior" {{ ($item->role ?? old('role')) == 'junior' ? 'selected' : '' }}>
+        Программист
+      </option>
+    @elseif ($item->role == 'junior')
+      {{--  --}}
+      <option value="junior" {{ ($item->role ?? old('role')) == 'junior' ? 'selected' : '' }}>
+        Программист
+      </option>
+      <option value="senior" {{ ($item->role ?? old('role')) == 'senior' ? 'selected' : '' }}>
+        Ведущий программист
+      </option>
+    @elseif ($item->role == 'senior')
+      {{--  --}}
+      <option value="senior" {{ ($item->role ?? old('role')) == 'senior' ? 'selected' : '' }}>
+        Ведущий программист
+      </option>
+    @endif
   </select>
 </div>
 
