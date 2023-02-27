@@ -39,6 +39,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request['password'] = bcrypt($request['password']);
+
         User::create($request->all());
 
         return redirect()->route('users.index');
@@ -83,8 +85,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $item = User::findOrFail($id);
-        // обновляем данные
-        $item->update($request->all());
+
+        if ($request['password'] == '') {
+            // если нет пароля исключаем поле
+            $item->update($request->except('password'));
+        } else {
+            // если есть пароль хеш и обновить
+            $request['password'] = bcrypt($request['password']);
+            // обновляем данные
+            $item->update($request->all());
+        }
 
         return redirect()->route('users.index');
     }

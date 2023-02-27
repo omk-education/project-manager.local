@@ -4,13 +4,13 @@
   <div class="container">
     <div class="card">
       <h5 class="card-header">
-        Добавить задачу
+        Добавить пользователя
       </h5>
       <div class="card-body">
 
-        <form action="{{ route('tasks.store') }}" method="post">
+        <form action="{{ route('users.store') }}" method="post">
           @csrf
-          @include('tasks.partials.form')
+          @include('users.partials.form')
         </form>
 
       </div>
