@@ -37,7 +37,7 @@
 
 </fieldset>
 
-<fieldset {{ $item->completed && Auth::user()->can('junior') ? 'disabled' : '' }}>
+<fieldset {{ ($item->completed ?? old('completed')) && Auth::user()->can('junior') ? 'disabled' : '' }}>
   <div class="mb-3">
     <label for="completed" class="form-label">
       Статус задачи
