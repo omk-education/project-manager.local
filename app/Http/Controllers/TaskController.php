@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
+// use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -41,11 +42,11 @@ class TaskController extends Controller
     /**
      * Сохранение новой записи
      *
-     * @param Request $request запрос
+     * @param TaskRequest $request запрос
      *
      * @return RedirectResponse перенаправление
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         Task::create($request->all());
 
@@ -84,12 +85,12 @@ class TaskController extends Controller
     /**
      * Обновление
      *
-     * @param Request $request запрос
+     * @param TaskRequest $request запрос
      * @param int     $id      идентификатор
      *
      * @return RedirectResponse перенаправление
      */
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
         $item = Task::findOrFail($id);
         // обновляем данные

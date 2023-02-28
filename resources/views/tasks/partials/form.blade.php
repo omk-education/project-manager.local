@@ -17,8 +17,13 @@
     <label for="priority" class="form-label">
       Приоритет задачи
     </label>
-    <input type="number" class="form-control" id="priority" name="priority"
+    <input type="number" class="form-control @error('priority') is-invalid @enderror" id="priority" name="priority"
       value="{{ $item->priority ?? old('priority') }}">
+    @error('priority')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+    @enderror
   </div>
 
   <div class="mb-3">
