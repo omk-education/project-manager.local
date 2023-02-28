@@ -22,7 +22,7 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:100',
             'description' => 'required',
             'priority' => 'required|integer|between:0,500'
         ];
@@ -37,6 +37,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'name.required' => 'Введите название задачи',
+            'name.max' => 'Название задачи не более :max символов',
             'description.required' => 'Введите описание задачи',
             'priority.required' => 'Введите приоритет задачи',
             'priority.integer' => 'Приоритет задачи должен быть целым числом',
