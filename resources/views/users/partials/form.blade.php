@@ -2,14 +2,26 @@
   <label for="name" class="form-label">
     Имя пользователя
   </label>
-  <input type="text" class="form-control" id="name" name="name" value="{{ $item->name ?? old('name') }}">
+  <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name"
+    value="{{ $item->name ?? old('name') }}">
+  @error('name')
+    <div class="invalid-feedback">
+      {{ $message }}
+    </div>
+  @enderror
 </div>
 
 <div class="mb-3">
   <label for="email" class="form-label">
     Адрес электронной почты
   </label>
-  <input type="email" class="form-control" id="email" name="email" value="{{ $item->email ?? old('email') }}">
+  <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" name="email"
+    value="{{ $item->email ?? old('email') }}">
+  @error('email')
+    <div class="invalid-feedback">
+      {{ $message }}
+    </div>
+  @enderror
 </div>
 
 <div class="mb-3">
@@ -25,7 +37,7 @@
   </label>
   <select class="form-select" name="role">
 
-    @if ($item->role == 'user')
+    @if (($item->role ?? old('role')) == 'user')
       {{--  --}}
       <option value="user" {{ ($item->role ?? old('role')) == 'user' ? 'selected' : '' }}>
         Пользователь
@@ -33,7 +45,7 @@
       <option value="junior" {{ ($item->role ?? old('role')) == 'junior' ? 'selected' : '' }}>
         Программист
       </option>
-    @elseif ($item->role == 'junior')
+    @elseif (($item->role ?? old('role')) == 'junior')
       {{--  --}}
       <option value="junior" {{ ($item->role ?? old('role')) == 'junior' ? 'selected' : '' }}>
         Программист
@@ -41,10 +53,14 @@
       <option value="senior" {{ ($item->role ?? old('role')) == 'senior' ? 'selected' : '' }}>
         Ведущий программист
       </option>
-    @elseif ($item->role == 'senior')
+    @elseif (($item->role ?? old('role')) == 'senior')
       {{--  --}}
       <option value="senior" {{ ($item->role ?? old('role')) == 'senior' ? 'selected' : '' }}>
         Ведущий программист
+      </option>
+    @else
+      <option value="user" {{ ($item->role ?? old('role')) == 'user' ? 'selected' : '' }}>
+        Пользователь
       </option>
     @endif
   </select>

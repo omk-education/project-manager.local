@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+// use Illuminate\Http\Request;
 use App\Models\User;
 
 
@@ -33,11 +34,11 @@ class UserController extends Controller
     /**
      * Сохранение новой записи
      *
-     * @param Request $request запрос
+     * @param UserRequest $request запрос
      *
      * @return RedirectResponse перенаправление
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $request['password'] = bcrypt($request['password']);
 
@@ -77,12 +78,12 @@ class UserController extends Controller
     /**
      * Обновление
      *
-     * @param Request $request запрос
+     * @param UserRequest $request запрос
      * @param int     $id      идентификатор
      *
      * @return RedirectResponse перенаправление
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $item = User::findOrFail($id);
 
