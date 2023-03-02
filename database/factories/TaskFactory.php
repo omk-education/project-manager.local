@@ -20,7 +20,7 @@ class TaskFactory extends Factory
             'name' => fake()->sentence(3),
             'description' => fake()->text(),
             'priority' => fake()->numberBetween(0, 500),
-            // 'user_id',
+            'project_id' => 1,
             'completed' => fake()->boolean(),
         ];
     }

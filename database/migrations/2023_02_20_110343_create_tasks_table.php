@@ -20,6 +20,7 @@ return new class extends Migration
                 $table->text('description');
                 $table->integer('priority')->unsigned();
                 $table->integer('user_id')->unsigned();
+                $table->integer('project_id')->unsigned();
                 $table->boolean('completed')->default(0);
 
                 $table->timestamps();
