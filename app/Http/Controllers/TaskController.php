@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
+use App\Models\Project;
 // use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
@@ -35,8 +36,9 @@ class TaskController extends Controller
     public function create()
     {
         $juniors = User::where('role', 'junior')->get();
+        $projects = Project::all();
 
-        return view('tasks.create', compact('juniors'));
+        return view('tasks.create', compact('juniors', 'projects'));
     }
 
     /**
@@ -78,8 +80,9 @@ class TaskController extends Controller
     {
         $item = Task::findOrFail($id);
         $juniors = User::where('role', 'junior')->get();
+        $projects = Project::all();
 
-        return view('tasks.edit', compact('item', 'juniors'));
+        return view('tasks.edit', compact('item', 'juniors', 'projects'));
     }
 
     /**

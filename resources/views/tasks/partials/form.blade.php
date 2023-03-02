@@ -52,6 +52,21 @@
     </select>
   </div>
 
+  <div class="mb-3">
+    <label for="project_id" class="form-label">
+      Проект
+    </label>
+    <select class="form-select" name="project_id">
+      @forelse($projects as $project)
+        <option value="{{ $project->id }}"
+          {{ ($item->project_id ?? old('project_id')) == $project->id ? 'selected' : '' }}>
+          {{ $project->name }}
+        </option>
+      @empty
+      @endforelse
+    </select>
+  </div>
+
 </fieldset>
 
 <fieldset {{ ($item->completed ?? old('completed')) && Auth::user()->can('junior') ? 'disabled' : '' }}>

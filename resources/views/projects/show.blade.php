@@ -4,20 +4,12 @@
   <div class="container">
     <div class="card">
       <h5 class="card-header">
-        Задачи
+        Проект {{ $item->name }}
       </h5>
       <div class="card-body">
 
         <table class="table table-bordered">
           <tbody>
-            <tr>
-              <th>№</th>
-              <td>{{ $item->id }}</td>
-            </tr>
-            <tr>
-              <th>Название</th>
-              <td>{{ $item->name }}</td>
-            </tr>
             <tr>
               <th>Описание</th>
               <td>{{ $item->description }}</td>
@@ -46,5 +38,20 @@
 
       </div>
     </div>
+
+    <div class="card mt-3">
+      <div class="card-header">
+        Задачи проекта
+      </div>
+      <ul class="list-group list-group-flush">
+        @forelse ($item->tasks as $task)
+          <li class="list-group-item {{ $task->completed ? 'list-group-item-success' : 'list-group-item-warning' }}">
+            {{ $task->name }} - {{ $task->user->name }}
+          </li>
+        @empty
+        @endforelse
+      </ul>
+    </div>
+
   </div>
 @endsection
