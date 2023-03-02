@@ -46,6 +46,12 @@
 
               @can('senior')
                 <li class="nav-item">
+                  <a class="nav-link" href="{{ route('projects.index') }}">
+                    Проекты
+                  </a>
+                </li>
+
+                <li class="nav-item">
                   <a class="nav-link" href="{{ route('users.index') }}">
                     Пользователи
                   </a>

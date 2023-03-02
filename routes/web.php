@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProjectController;
 
 Route::get(
     '/',
@@ -27,6 +28,9 @@ Route::group(
 
 
         Route::resource('users', UserController::class)
+            ->middleware(['can:senior']);
+
+        Route::resource('projects', ProjectController::class)
             ->middleware(['can:senior']);
     }
 );
